@@ -17,6 +17,10 @@
       <div class="ambient ambient-two" aria-hidden="true"></div>
 
       <section class="invitation-shell" aria-label="To‘y taklifnomasi">
+        <div class="language-switch" aria-label="Tilni tanlang">
+          <button class="language-button is-active" type="button" data-language="uz" aria-pressed="true">UZ</button>
+          <button class="language-button" type="button" data-language="ru" aria-pressed="false">RU</button>
+        </div>
         <div class="invitation-card">
           <img
             class="invitation-image"
@@ -31,7 +35,65 @@
             <span class="tap-ripple" aria-hidden="true"></span>
           </button>
         </div>
-        <p class="opening-note" id="openingNote" aria-live="polite">Taklifnomani ochish uchun bosing</p>
+        <p class="opening-note" id="openingNote" aria-live="polite" data-i18n="openingNote">Taklifnomani ochish uchun bosing</p>
+
+        <div class="details" id="details" aria-hidden="true">
+          <section class="detail-section welcome-section">
+            <span class="eyebrow" data-i18n="dearGuests">Hurmatli mehmonlar</span>
+            <div class="ornament" aria-hidden="true">❦</div>
+            <p class="welcome-copy" data-i18n="welcomeCopy">
+              Sizni hayotimizdagi eng baxtli kun — nikoh to‘yimizga taklif qilamiz. Quvonchimizga sherik bo‘lishingiz biz uchun katta sharaf.
+            </p>
+            <p class="signature" data-i18n="signature">Mehr bilan, Azizbek &amp; Malika</p>
+          </section>
+
+          <section class="detail-section date-section">
+            <span class="eyebrow" data-i18n="saveDate">Sanani esda saqlang</span>
+            <div class="date-lockup">
+              <span class="date-day">15</span>
+              <span class="date-divider" aria-hidden="true"></span>
+              <span class="date-meta">
+                <strong data-i18n="month">Oktabr</strong>
+                <small data-i18n="weekday">Payshanba</small>
+              </span>
+              <span class="date-divider" aria-hidden="true"></span>
+              <span class="date-year">2026</span>
+            </div>
+            <p class="event-time"><span data-i18n="timeLabel">Boshlanish vaqti</span> · 18:00</p>
+          </section>
+
+          <section class="detail-section countdown-section">
+            <span class="eyebrow" data-i18n="countdownTitle">Bayramgacha qoldi</span>
+            <div class="countdown" role="timer" aria-live="off">
+              <div><strong id="days">00</strong><span data-i18n="days">kun</span></div>
+              <div><strong id="hours">00</strong><span data-i18n="hours">soat</span></div>
+              <div><strong id="minutes">00</strong><span data-i18n="minutes">daqiqa</span></div>
+              <div><strong id="seconds">00</strong><span data-i18n="seconds">soniya</span></div>
+            </div>
+          </section>
+
+          <section class="detail-section location-section">
+            <span class="location-icon" aria-hidden="true">⌖</span>
+            <span class="eyebrow" data-i18n="locationTitle">Joylashuv</span>
+            <h2>Atlas Plaza</h2>
+            <p data-i18n="locationCopy">Toshkent shahri</p>
+            <a class="map-button" href="https://yandex.uz/maps/?text=Atlas%20Plaza%20Tashkent" target="_blank" rel="noreferrer">
+              <span data-i18n="mapButton">Xaritada ko‘rish</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </section>
+
+          <section class="detail-section gift-section">
+            <span class="gift-icon" aria-hidden="true">♡</span>
+            <span class="eyebrow" data-i18n="giftTitle">Sovg‘a haqida</span>
+            <p data-i18n="giftCopy">Biz uchun eng katta sovg‘a — baxtli kunimizda yonimizda bo‘lishingiz.</p>
+          </section>
+
+          <footer class="invitation-footer">
+            <strong>Azizbek <span>·</span> Malika</strong>
+            <small>15 · 10 · 2026</small>
+          </footer>
+        </div>
       </section>
     </main>
     <script src="script.js"></script>
