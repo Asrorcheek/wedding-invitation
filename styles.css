@@ -4,13 +4,15 @@
 }
 
 * { box-sizing: border-box; }
-html { min-height: 100%; margin: 0; overflow-x: clip; }
-body { min-height: 100%; margin: 0; }
+html { width: 100%; min-height: 100%; margin: 0; overflow-x: clip; }
+body { width: 100%; min-height: 100%; margin: 0; }
 
 body {
   background: #eaded1;
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 button, img { -webkit-tap-highlight-color: transparent; }
@@ -22,15 +24,21 @@ button, img { -webkit-tap-highlight-color: transparent; }
   place-items: center;
   overflow-x: clip;
   overflow-y: visible;
-  padding: 18px;
-  background:
+  padding: 0;
+  background-color: #f1ded5;
+  background-image:
+    url("assets/page-floral-background.png"),
     radial-gradient(circle at 18% 16%, rgba(255,255,255,.78), transparent 26rem),
     radial-gradient(circle at 82% 84%, rgba(211,143,129,.22), transparent 30rem),
     linear-gradient(135deg, #f1e6da, #e7d7c8);
+  background-position: center top, center, center, center;
+  background-repeat: repeat-y, no-repeat, no-repeat, no-repeat;
+  background-size: min(100%, 852px) auto, auto, auto, auto;
 }
 
 .ambient {
-  position: absolute;
+  position: fixed;
+  z-index: 0;
   width: 35vw;
   max-width: 440px;
   aspect-ratio: 1;
@@ -38,6 +46,7 @@ button, img { -webkit-tap-highlight-color: transparent; }
   background: rgba(244,182,173,.2);
   filter: blur(80px);
   animation: breathe 7s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 .ambient-one { top: -15%; right: -8%; }
@@ -46,14 +55,19 @@ button, img { -webkit-tap-highlight-color: transparent; }
 .invitation-shell {
   position: relative;
   z-index: 1;
-  width: min(411px, calc(100vw - 36px));
+  width: min(430px, 100vw);
 }
 
 .language-switch {
+  position: absolute;
+  z-index: 8;
+  top: 18px;
+  left: 50%;
   display: flex;
   justify-content: center;
   gap: 5px;
-  margin: 0 auto 10px;
+  margin: 0;
+  transform: translateX(-50%);
 }
 
 .language-button {
@@ -78,7 +92,7 @@ button, img { -webkit-tap-highlight-color: transparent; }
 .invitation-card {
   position: relative;
   width: 100%;
-  aspect-ratio: 411 / 890;
+  aspect-ratio: 851 / 1848;
   overflow: hidden;
   background: var(--blush);
   box-shadow: 0 30px 80px rgba(91,55,43,.23), 0 7px 22px rgba(91,55,43,.12);
@@ -151,7 +165,13 @@ button, img { -webkit-tap-highlight-color: transparent; }
   pointer-events: none;
 }
 
-.petal-field { position: absolute; z-index: 3; inset: 0; overflow: hidden; pointer-events: none; }
+.petal-field {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
 .petal {
   position: absolute;
@@ -167,19 +187,20 @@ button, img { -webkit-tap-highlight-color: transparent; }
 .petal-2 { background: linear-gradient(145deg, #fffaf3, #eab2a6); }
 
 .opening-note {
-  height: 22px;
-  margin: 12px 0 0;
-  color: rgba(108,72,53,.76);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  letter-spacing: .22em;
-  text-align: center;
-  text-transform: uppercase;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .details {
   display: none;
-  padding: 6px 0 28px;
+  position: relative;
+  z-index: 2;
+  padding: 0 14px 28px;
 }
 
 .is-open {
@@ -199,7 +220,7 @@ button, img { -webkit-tap-highlight-color: transparent; }
   border-radius: 150px 150px 28px 28px;
   background:
     radial-gradient(circle at 50% 4%, rgba(255,255,255,.9), transparent 48%),
-    linear-gradient(160deg, rgba(255,249,242,.97), rgba(246,218,209,.95));
+    linear-gradient(160deg, rgba(255,249,242,.94), rgba(246,218,209,.91));
   box-shadow: 0 22px 55px rgba(88,49,37,.14);
   text-align: center;
   opacity: 0;
@@ -419,13 +440,8 @@ button, img { -webkit-tap-highlight-color: transparent; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-height: 920px) {
-  .invitation-shell { width: min(380px, calc((100svh - 58px) * 411 / 890), calc(100vw - 24px)); }
-  .experience { padding: 8px 12px; }
-  .opening-note { margin-top: 7px; }
-}
-
 @media (max-width: 360px) {
+  .details { padding-inline: 10px; }
   .detail-section { padding-inline: 22px; }
   .event-item { grid-template-columns: 84px 1fr; gap: 10px; padding-inline: 12px; }
   .event-date strong { font-size: 32px; }
