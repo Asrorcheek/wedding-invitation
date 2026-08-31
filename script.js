@@ -11,10 +11,13 @@ const translations = {
     openedNote: "Muhabbat bilan…",
     dearGuests: "Hurmatli mehmonlar",
     welcomeCopy: "Sizni hayotimizdagi eng baxtli kun — nikoh to‘yimizga taklif qilamiz. Quvonchimizga sherik bo‘lishingiz biz uchun katta sharaf.",
-    signature: "Mehr bilan, Azizbek & Malika",
-    saveDate: "Sanani esda saqlang",
-    month: "Oktabr",
-    weekday: "Payshanba",
+    signature: "Mehr bilan, Feruzbek & Odina",
+    programTitle: "To‘y dasturi",
+    month: "Sentabr",
+    sunday: "Yakshanba",
+    monday: "Dushanba",
+    visolEvening: "Visol oqshomi",
+    nahorOshi: "Nahor oshi",
     timeLabel: "Boshlanish vaqti",
     countdownTitle: "Bayramgacha qoldi",
     days: "kun",
@@ -22,7 +25,7 @@ const translations = {
     minutes: "daqiqa",
     seconds: "soniya",
     locationTitle: "Joylashuv",
-    locationCopy: "Toshkent shahri",
+    locationCopy: "27-sentabr · soat 18:00",
     mapButton: "Xaritada ko‘rish",
     giftTitle: "Sovg‘a haqida",
     giftCopy: "Biz uchun eng katta sovg‘a — baxtli kunimizda yonimizda bo‘lishingiz.",
@@ -32,10 +35,13 @@ const translations = {
     openedNote: "С любовью…",
     dearGuests: "Дорогие гости",
     welcomeCopy: "Приглашаем вас разделить с нами самый счастливый день нашей жизни — день нашей свадьбы. Для нас большая честь видеть вас рядом.",
-    signature: "С любовью, Азизбек и Малика",
-    saveDate: "Сохраните дату",
-    month: "Октябрь",
-    weekday: "Четверг",
+    signature: "С любовью, Ферузбек и Одина",
+    programTitle: "Свадебная программа",
+    month: "Сентябрь",
+    sunday: "Воскресенье",
+    monday: "Понедельник",
+    visolEvening: "Свадебный вечер",
+    nahorOshi: "Утренний плов",
     timeLabel: "Начало",
     countdownTitle: "До торжества осталось",
     days: "дней",
@@ -43,7 +49,7 @@ const translations = {
     minutes: "минут",
     seconds: "секунд",
     locationTitle: "Место проведения",
-    locationCopy: "Город Ташкент",
+    locationCopy: "27 сентября · в 18:00",
     mapButton: "Открыть на карте",
     giftTitle: "О подарках",
     giftCopy: "Самый ценный подарок для нас — ваше присутствие в этот счастливый день.",
@@ -92,7 +98,7 @@ languageButtons.forEach((button) => {
   });
 });
 
-const weddingDate = new Date("2026-10-15T18:00:00+05:00");
+const weddingDate = new Date("2026-09-27T18:00:00+05:00");
 
 function updateCountdown() {
   const remaining = Math.max(0, weddingDate.getTime() - Date.now());

@@ -1,0 +1,7 @@
+{
+  "name": "feruzbek-odina-taklifnoma",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/regression.test.mjs"
+  }
+}

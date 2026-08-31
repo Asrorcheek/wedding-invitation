@@ -1,6 +1,9 @@
-# Azizbek & Malika — Taklifnoma
+# Feruzbek & Odina — Taklifnoma
 
 Romantic animated wedding invitation built with plain HTML, CSS, and JavaScript.
+
+- Visol oqshomi: 27 September 2026, 18:00 — Malika to‘yxonasi
+- Nahor oshi: 28 September 2026 — Malika to‘yxonasi
 
 ## Run locally
 
