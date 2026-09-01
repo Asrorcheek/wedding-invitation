@@ -3,46 +3,38 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
-const css = readFileSync(new URL("../styles.css", import.meta.url), "utf8");
-const script = readFileSync(new URL("../script.js", import.meta.url), "utf8");
+const musicUrl = new URL("../assets/calikusu-jenerik.m4a", import.meta.url);
 
-test("double scrollbar regression: page owns one vertical scroll surface", () => {
-  assert.match(css, /html\s*\{[^}]*overflow-x:\s*clip/s);
-  assert.match(css, /\.experience\s*\{[^}]*overflow-x:\s*clip[^}]*overflow-y:\s*visible/s);
-  assert.doesNotMatch(css, /html\s*,\s*body\s*\{[^}]*overflow-x:\s*hidden/s);
-  assert.doesNotMatch(css, /\.is-open\s*\{[^}]*overflow-/s);
-});
-
-test("mobile invitation keeps a stable full-width scale while browser chrome changes height", () => {
-  assert.match(css, /\.invitation-shell\s*\{[^}]*width:\s*min\(430px,\s*100vw\)/s);
-  assert.doesNotMatch(css, /\.invitation-shell[^}]*100s?vh/s);
-  assert.doesNotMatch(css, /@media\s*\(max-height:/s);
-  assert.match(css, /-webkit-text-size-adjust:\s*100%/);
-});
-
-test("floral background and falling petals cover the complete landing page", () => {
-  assert.match(html, /<div class="petal-field" id="petals"[^>]*><\/div>[\s\S]*<section class="invitation-shell"/);
-  assert.match(css, /\.petal-field\s*\{[^}]*position:\s*fixed[^}]*inset:\s*0/s);
-  assert.match(css, /url\("assets\/page-floral-background\.png"\)/);
-  assert.match(css, /background-repeat:\s*repeat-y/);
-  assert.ok(existsSync(new URL("../assets/page-floral-background.png", import.meta.url)));
-});
-
-test("decorative ambience cannot create a phantom blank footer", () => {
-  assert.match(css, /\.ambient\s*\{[^}]*position:\s*fixed/s);
-  assert.doesNotMatch(css, /\.ambient\s*\{[^}]*position:\s*absolute/s);
-});
-
-test("Feruzbek and Odina event details stay consistent", () => {
-  assert.match(html, /Feruzbek &amp; Odina/);
+test("luxury invitation preserves all supplied event details", () => {
+  assert.match(html, /Feruzbek/);
+  assert.match(html, /Odina/);
+  assert.match(html, /27 SENTABR 2026/);
   assert.match(html, /Visol oqshomi/);
-  assert.match(html, /Nahor oshi/);
+  assert.match(html, /Boshlanishi · 18:00/);
   assert.match(html, /Malika to‘yxonasi/);
-  assert.match(script, /2026-09-27T18:00:00\+05:00/);
-  assert.ok(existsSync(new URL("../assets/invitation-feruzbek-odina.png", import.meta.url)));
+  assert.match(html, /28/);
+  assert.match(html, /Nahor oshi/);
+  assert.match(html, /2026-09-27T18:00:00\+05:00/);
 });
 
 test("location button opens the supplied Google Maps pin", () => {
   assert.match(html, /https:\/\/maps\.google\.com\/maps\?q=38\.921835,67\.027932&amp;ll=38\.921835,67\.027932&amp;z=16/);
-  assert.match(html, /class="map-button"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+  assert.match(html, /class="loc-btn"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+});
+
+test("background music starts from the invitation gesture and remains controllable", () => {
+  assert.ok(existsSync(musicUrl));
+  const audioHeader = readFileSync(musicUrl).subarray(0, 32).toString("latin1");
+  assert.match(audioHeader, /ftyp/);
+  assert.match(html, /<audio id="background-music"[^>]*src="assets\/calikusu-jenerik\.m4a"[^>]*loop/);
+  assert.match(html, /musicControl\.classList\.add\('visible'\);\s*startMusic\(\);/s);
+  assert.match(html, /musicControl\.addEventListener\('click'/);
+  assert.match(html, /music\.volume = 0\.48/);
+});
+
+test("mobile layout uses one page scroll and accounts for safe-area controls", () => {
+  assert.match(html, /width=device-width, initial-scale=1, viewport-fit=cover/);
+  assert.match(html, /bottom:max\(18px, env\(safe-area-inset-bottom\)\)/);
+  assert.doesNotMatch(html, /<br\s*\/?\s*>/i);
+  assert.doesNotMatch(html, /overflow-y:\s*(auto|scroll)/);
 });
