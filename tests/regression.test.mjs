@@ -41,3 +41,8 @@ test("Feruzbek and Odina event details stay consistent", () => {
   assert.match(script, /2026-09-27T18:00:00\+05:00/);
   assert.ok(existsSync(new URL("../assets/invitation-feruzbek-odina.png", import.meta.url)));
 });
+
+test("location button opens the supplied Google Maps pin", () => {
+  assert.match(html, /https:\/\/maps\.google\.com\/maps\?q=38\.921835,67\.027932&amp;ll=38\.921835,67\.027932&amp;z=16/);
+  assert.match(html, /class="map-button"[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+});
