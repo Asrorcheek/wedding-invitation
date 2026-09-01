@@ -38,3 +38,9 @@ test("mobile layout uses one page scroll and accounts for safe-area controls", (
   assert.doesNotMatch(html, /<br\s*\/?\s*>/i);
   assert.doesNotMatch(html, /overflow-y:\s*(auto|scroll)/);
 });
+
+test("opening cover uses the approved cream color with readable royal text", () => {
+  assert.match(html, /#cover\s*\{[^}]*background:#F7F1E3/s);
+  assert.match(html, /\.cover-date\s*\{[^}]*color:rgba\(46,26,71,\.76\)/s);
+  assert.match(html, /\.cover-prompt\s*\{[^}]*color:rgba\(46,26,71,\.62\)/s);
+});
